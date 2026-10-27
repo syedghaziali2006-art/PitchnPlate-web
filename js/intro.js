@@ -41,7 +41,8 @@
   let dpr = 1;
 
   function resizeCanvas() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const isMobileDevice = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    dpr = isMobileDevice ? 1 : Math.min(window.devicePixelRatio || 1, 2);
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = width * dpr;
@@ -246,8 +247,9 @@
     secondaryRings = [];
     glassShards = [];
 
-    // 1. Main radial fracture branches (16 to 22 jagged rays)
-    const numBranches = 18;
+    const isMobile = width <= 768;
+    // 1. Main radial fracture branches (mobile optimized for 60fps)
+    const numBranches = isMobile ? 10 : 18;
     for (let i = 0; i < numBranches; i++) {
       const baseAngle = (i / numBranches) * Math.PI * 2 + (Math.random() * 0.2 - 0.1);
       const points = [{ x: cx, y: cy }];
@@ -283,7 +285,7 @@
     }
 
     // 2. Concentric spiderweb stress circles
-    const ringRadii = [35, 75, 130, 200, 290, 400];
+    const ringRadii = isMobile ? [30, 75, 140, 220] : [35, 75, 130, 200, 290, 400];
     ringRadii.forEach((radius, idx) => {
       const ringPoints = [];
       const segments = 16 + idx * 4;
@@ -299,7 +301,8 @@
     });
 
     // 3. Floating micro glass fragments
-    for (let k = 0; k < 25; k++) {
+    const numShards = isMobile ? 10 : 25;
+    for (let k = 0; k < numShards; k++) {
       const shardAngle = Math.random() * Math.PI * 2;
       const shardDist = 20 + Math.random() * 180;
       glassShards.push({
@@ -411,10 +414,11 @@
 
   // 2. Realistic Cricket Batter Drawing & Swing Animation
   function drawBatter(t) {
-    // Batter placement
+    const isMobile = width <= 768;
+    // Batter placement: on mobile portrait, keep batter nicely centered in upper-middle view
     const bx = width * 0.5;
-    const by = height * 0.68;
-    const scale = Math.min(width, height) / 850;
+    const by = isMobile ? height * 0.60 : height * 0.68;
+    const scale = isMobile ? Math.max(width / 480, 0.72) : Math.min(width, height) / 850;
 
     ctx.save();
     ctx.translate(bx, by);
@@ -591,11 +595,14 @@
     // At 1.7s: Contact on bat!
     // 1.7s - 2.5s: Ball rockets directly towards viewer camera!
 
+    const isMobile = width <= 768;
     if (t < 1.7) {
       // Ball pitched towards batter
       const p = t / 1.7;
+      const startPitchY = isMobile ? height * 0.46 : height * 0.55;
+      const endPitchY = isMobile ? height * 0.57 : height * 0.65;
       const bx = width * 0.48 + p * (width * 0.52 - width * 0.48);
-      const by = height * 0.55 + Math.sin(p * Math.PI) * 40 + p * 30;
+      const by = startPitchY + Math.sin(p * Math.PI) * 35 + p * (endPitchY - startPitchY);
       const bRadius = 5 + p * 6;
 
       ctx.save();
@@ -615,9 +622,9 @@
     const easeProgress = Math.pow(progress, 3.2);
 
     const startX = width * 0.52;
-    const startY = height * 0.65;
+    const startY = isMobile ? height * 0.57 : height * 0.65;
     const endX = width * 0.5;
-    const endY = height * 0.48;
+    const endY = isMobile ? height * 0.45 : height * 0.48;
 
     const curX = startX + (endX - startX) * progress;
     const curY = startY + (endY - startY) * progress;
@@ -800,21 +807,28 @@
 
     ctx.restore();
 
-    // Trigger slide transition into Hero section at 3.8s
-    if (elapsed >= 3.8 && !isIntroFinished) {
+    // Trigger smooth cinematic reveal transition into Hero section at 3.6s
+    if (elapsed >= 3.6 && !isIntroFinished) {
       triggerSlideToLanding();
+      return; // Stop animation loop immediately so CPU/GPU is 100% smooth for CSS transition
     }
 
-    // Continue render until transition completes (~4.6s)
-    if (elapsed < 4.8) {
+    // Continue render until transition
+    if (!isIntroFinished) {
       animationFrameId = requestAnimationFrame(render);
     }
   }
 
-  // --- Slide & Reveal Transition into Landing Page ---
+  // --- Cinematic Reveal Transition into Landing Page ---
   function triggerSlideToLanding() {
     if (isIntroFinished) return;
     isIntroFinished = true;
+
+    // Stop canvas render loop immediately
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
 
     // Save session flag so future reloads don't force intro replay
     try {
@@ -823,22 +837,17 @@
       // Ignore private browsing session storage errors
     }
 
-    // Animate intro container sliding out smoothly
-    introContainer.classList.add('slide-out');
+    // Animate intro container dissolving smoothly
+    introContainer.classList.add('intro-reveal-fade');
 
     // Unlock body scrolling
-    setTimeout(() => {
-      document.body.classList.remove('intro-active');
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-    }, 700);
+    document.body.classList.remove('intro-active');
 
-    // Hide intro container completely after slide
+    // Hide intro container completely after smooth dissolve
     setTimeout(() => {
       introContainer.style.display = 'none';
-      introContainer.classList.remove('slide-out');
-    }, 1000);
+      introContainer.classList.remove('intro-reveal-fade', 'slide-out');
+    }, 850);
   }
 
   // --- Immediate Skip Logic ---
