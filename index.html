@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PitchnPlate | Indoor Cricket, Futsal Turf & Social Café — Scheme 33, Karachi</title>
+  <meta name="description" content="Experience Karachi's premier indoor sports arena and social destination. Professional indoor cricket nets, futsal turf, outdoor café, live match screenings & family lounge in Gulzar-e-Hijri, Scheme 33.">
+  <meta name="keywords" content="PitchnPlate, indoor cricket Karachi, futsal turf Karachi, Scheme 33 cricket, sports arena Karachi, cricket nets Karachi, family café Scheme 33">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="PitchnPlate | Premium Indoor Cricket, Futsal & Café in Karachi">
+  <meta property="og:description" content="Your Game. Your People. Your Place. Book your cricket or futsal slot at PitchnPlate, Scheme 33, Karachi.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/cricket-arena-night.webp">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="shortcut icon" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/logo.png">
+
+  <!-- Early Anchor / Bot Detection Script (Zero-delay render for deep-links & audits) -->
+  <script>
+    if ((window.location.hash && window.location.hash.length > 1) || /Chrome-Lighthouse|Googlebot/i.test(navigator.userAgent)) {
+      document.documentElement.classList.add('skip-intro');
+    }
+  </script>
+  
+  <!-- Preload Critical LCP Hero Image (Responsive Variants) -->
+  <link rel="preload" as="image" href="assets/images/cricket-arena-night-mobile.webp" media="(max-width: 768px)" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/cricket-arena-night.webp" media="(min-width: 769px)" type="image/webp" fetchpriority="high">
+
+  <!-- Preload Optimized Local Plus Jakarta Sans WOFF2 Fonts (Weights 800 & 400) -->
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-v12-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-v12-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  
+  <!-- Stylesheet (Preloaded & Minified) -->
+  <link rel="preload" href="css/style.min.css" as="style">
+  <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- 1. CINEMATIC CRICKET INTRO OVERLAY                          -->
+  <!-- ============================================================ -->
+  <div id="intro-container" class="intro-container" aria-label="Cinematic cricket introduction animation">
+    <!-- Canvas for 3D Cricket Swing, Ball Flight & Glass Fracture -->
+    <canvas id="intro-canvas"></canvas>
+    
+    <!-- Top-Right Controls: Sound Toggle & Skip Intro -->
+    <div class="intro-controls">
+      <button id="intro-sound-toggle" class="intro-control-btn sound-btn" title="Toggle Sound" aria-label="Audio ON">
+        <svg id="sound-icon-on" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <span class="btn-text">Audio ON</span>
+      </button>
+
+      <button id="skip-intro-btn" class="intro-control-btn skip-btn" aria-label="Skip Intro to Landing Page">
+        <span class="btn-text">Skip Intro</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Intro Branding Pill (Bottom Center) -->
+    <div class="intro-branding-pill">
+      <img src="assets/images/logo.webp" alt="PitchnPlate Logo" class="intro-pill-logo" width="22" height="22">
+      <span class="brand-text">PITCH<span class="accent-red">N</span>PLATE ARENA</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 2. STICKY NAVIGATION BAR                                     -->
+  <!-- ============================================================ -->
+  <header id="main-header" class="site-header">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#hero" class="brand-logo">
+        <img src="assets/images/logo.webp" alt="PitchnPlate Logo" class="brand-logo-img" width="44" height="44">
+        <div class="logo-text">
+          <span class="logo-main">PitchnPlate</span>
+          <span class="logo-sub">KARACHI • ARENA & CAFÉ</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#facilities" class="nav-link">Facilities</a>
+        <a href="#atmosphere" class="nav-link">Experience</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
+        <a href="#location" class="nav-link">Location</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Replay Intro Button -->
+        <button id="replay-intro-btn" class="action-icon-btn" title="Replay Cinematic Intro" aria-label="Replay Cinematic Intro">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <span class="tooltip">Replay Intro</span>
+        </button>
+
+        <!-- Direct Phone Call -->
+        <a href="tel:+923350666786" class="phone-link-btn" title="Call PitchnPlate">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span class="phone-number">0335&nbsp;0666786</span>
+        </a>
+
+        <!-- Book Slot CTA -->
+        <button id="open-booking-modal-btn" class="btn btn-primary" aria-label="Book your turf slot">
+          <span>Book a Slot</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Open mobile menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+      <div class="mobile-nav-links">
+        <a href="#hero" class="mobile-nav-link">Home</a>
+        <a href="#facilities" class="mobile-nav-link">Facilities</a>
+        <a href="#atmosphere" class="mobile-nav-link">Experience</a>
+        <a href="#gallery" class="mobile-nav-link">Gallery</a>
+        <a href="#reviews" class="mobile-nav-link">Reviews</a>
+        <a href="#location" class="mobile-nav-link">Location & Contact</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <a href="tel:+923350666786" class="btn btn-outline full-width">
+          📞 Call: +92 335 0666786
+        </a>
+        <button class="btn btn-primary full-width modal-trigger-mobile">
+          🏏 Book Slot via WhatsApp
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- 3. HERO SECTION                                              -->
+  <!-- ============================================================ -->
+  <main>
+    <section id="hero" class="hero-section">
+      <!-- Background Arena Layer with Responsive WebP Picture -->
+      <div class="hero-bg-container">
+        <picture class="hero-bg-picture">
+          <source media="(max-width: 768px)" srcset="assets/images/cricket-arena-night-mobile.webp" type="image/webp">
+          <img src="assets/images/cricket-arena-night.webp" alt="PitchnPlate Night Cricket Arena with Floodlights" class="hero-bg-img" fetchpriority="high" width="1600" height="900" decoding="async">
+        </picture>
+        <div class="hero-gradient-overlay"></div>
+        <div class="hero-ambient-lights"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="badge-dot"></span>
+          <span>KARACHI'S PREMIER INDOOR SPORTS & DINING ARENA</span>
+        </div>
+
+        <h1 class="hero-title">
+          Your Game. <br>
+          <span class="text-gradient">Your People.</span> <br>
+          Your Place.
+        </h1>
+
+        <p class="hero-subtitle">
+          Bring your squad together for high-octane indoor cricket, fast-paced futsal turf, 
+          live sports screenings, and delicious food at PitchnPlate, Scheme 33, Karachi.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta-group">
+          <button class="btn btn-primary btn-large open-booking-trigger" id="hero-book-btn">
+            <span>Book Turf / Inquire Slot</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+          
+          <a href="#facilities" class="btn btn-secondary btn-large">
+            <span>Explore Facilities</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Trust & Highlights Bar -->
+        <div class="hero-stats-bar">
+          <div class="stat-pill">
+            <span class="stat-icon star-icon">★</span>
+            <div class="stat-details">
+              <strong>4.2 / 5.0</strong>
+              <small>47 Google Reviews</small>
+            </div>
+          </div>
+
+          <div class="stat-divider"></div>
+
+          <div class="stat-pill">
+            <span class="stat-icon turf-icon">🏏</span>
+            <div class="stat-details">
+              <strong>Floodlit Nets</strong>
+              <small>Pro Box Cricket & Futsal</small>
+            </div>
+          </div>
+
+          <div class="stat-divider"></div>
+
+          <div class="stat-pill">
+            <span class="stat-icon cafe-icon">☕</span>
+            <div class="stat-details">
+              <strong>Café & Big Screen</strong>
+              <small>Match Screenings & Bites</small>
+            </div>
+          </div>
+
+          <div class="stat-divider"></div>
+
+          <div class="stat-pill">
+            <span class="stat-icon family-icon">👨‍👩‍👧‍👦</span>
+            <div class="stat-details">
+              <strong>Family VIP Area</strong>
+              <small>Dedicated Safe Lounge</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 4. SPORTS & FACILITIES SECTION                              -->
+    <!-- ============================================================ -->
+    <section id="facilities" class="section facilities-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">SPORTS & RECREATION</span>
+          <h2 class="section-title">Built for Real Sports Lovers</h2>
+          <p class="section-desc">
+            Designed for professional enthusiasts and weekend warriors alike. Quality artificial turf, full safety netting, and floodlights for midnight matches.
+          </p>
+        </div>
+
+        <div class="facilities-grid">
+          <!-- Card 1: Indoor Cricket -->
+          <article class="facility-card">
+            <div class="card-media">
+              <img src="assets/images/cricket-bat-turf.webp" alt="Cricket Bat and Turf at PitchnPlate" class="card-img" loading="lazy" decoding="async" width="900" height="600">
+              <span class="card-badge">Indoor Cricket</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Indoor Cricket Arena</h3>
+              <p class="card-text">
+                Enclosed high-tension safety netting, premium green turf, and professional pitch markings. Play authentic tape-ball or match cricket with high-intensity non-glare floodlights.
+              </p>
+              <ul class="feature-bullets">
+                <li><span>✓</span> Full-height box cricket netting</li>
+                <li><span>✓</span> RSC bats, wickets, and match balls available</li>
+                <li><span>✓</span> 24/7 Floodlit night sessions</li>
+              </ul>
+              <button class="card-action-btn open-booking-trigger" data-sport="Indoor Cricket">
+                Reserve Cricket Pitch →
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 2: Indoor Futsal & Football -->
+          <article class="facility-card">
+            <div class="card-media">
+              <img src="assets/images/sports-squad.webp" alt="Players on PitchnPlate Futsal Turf" class="card-img" loading="lazy" decoding="async" width="900" height="600">
+              <span class="card-badge">Futsal Turf</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Indoor Futsal Ground</h3>
+              <p class="card-text">
+                Fast-paced mini football action on durable shock-absorbent turf. Rebound walls, sturdy goalposts, and ample space for 5v5 or 6v6 squad showdowns.
+              </p>
+              <ul class="feature-bullets">
+                <li><span>✓</span> Smooth shock-absorbing turf</li>
+                <li><span>✓</span> Ideal for competitive leagues & casual kickabouts</li>
+                <li><span>✓</span> Night floodlighting with zero blind spots</li>
+              </ul>
+              <button class="card-action-btn open-booking-trigger" data-sport="Indoor Futsal">
+                Reserve Futsal Slot →
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 3: Outdoor Café & Screenings -->
+          <article class="facility-card">
+            <div class="card-media">
+              <img src="assets/images/cafe-dining-screen.webp" alt="PitchnPlate Outdoor Café with Big Screen Projector" class="card-img" loading="lazy" decoding="async" width="900" height="600">
+              <span class="card-badge">Café & Screening</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Match Screenings & Café</h3>
+              <p class="card-text">
+                Catch ICC World Cup, PSL, and Champions League games on the giant outdoor projector screen. Enjoy hot tea, burgers, fries, and play board games on custom Ludo tables.
+              </p>
+              <ul class="feature-bullets">
+                <li><span>✓</span> Giant open-air live sports projection</li>
+                <li><span>✓</span> Fresh burgers, rolls, chai & snacks</li>
+                <li><span>✓</span> Vibrant chill vibe with custom Ludo tables</li>
+              </ul>
+              <button class="card-action-btn open-booking-trigger" data-sport="Café Gathering">
+                Plan Group Gathering →
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 4: Family VIP Lounge -->
+          <article class="facility-card">
+            <div class="card-media">
+              <img src="assets/images/family-vip-lounge.webp" alt="PitchnPlate Family VIP Lounge with Velvet Sofas" class="card-img" loading="lazy" decoding="async" width="900" height="600">
+              <span class="card-badge">Family Lounge</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">VIP Family Lounge</h3>
+              <p class="card-text">
+                A dedicated, beautifully illuminated seating area featuring plush velvet sofas and fairy lights overlooking the pitches. A safe and comfortable space for families and guests.
+              </p>
+              <ul class="feature-bullets">
+                <li><span>✓</span> Separate comfortable velvet sofa seating</li>
+                <li><span>✓</span> Direct vantage point of ongoing games</li>
+                <li><span>✓</span> Warm canopy lighting and family-friendly environment</li>
+              </ul>
+              <button class="card-action-btn open-booking-trigger" data-sport="Family VIP Lounge">
+                Inquire Lounge Booking →
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 5. ATMOSPHERE & HIGHLIGHTS                                   -->
+    <!-- ============================================================ -->
+    <section id="atmosphere" class="section atmosphere-section">
+      <div class="container">
+        <div class="atmosphere-wrapper">
+          <div class="atmosphere-text-col">
+            <span class="section-tag">THE PITChNPLATE EXPERIENCE</span>
+            <h2 class="section-title">Where Every Match Turns Into A Celebration</h2>
+            <p class="section-lead">
+              PitchnPlate was created to solve a simple problem in Scheme 33: sports enthusiasts needed a clean, professional, floodlit sports ground coupled with a welcoming social café where friends and families could relax together.
+            </p>
+
+            <div class="perks-list">
+              <div class="perk-item">
+                <div class="perk-icon">⚡</div>
+                <div class="perk-content">
+                  <h3 class="perk-title">Stadium-Grade Floodlighting</h3>
+                  <p>Specially positioned overhead light arrays deliver crisp visibility without blinding bowlers, batsmen, or keepers.</p>
+                </div>
+              </div>
+
+              <div class="perk-item">
+                <div class="perk-icon">🛡️</div>
+                <div class="perk-content">
+                  <h3 class="perk-title">All-Weather Enclosed Setup</h3>
+                  <p>Weatherproof netting and premium artificial grass keep matches running smoothly rain or shine.</p>
+                </div>
+              </div>
+
+              <div class="perk-item">
+                <div class="perk-icon">🍔</div>
+                <div class="perk-content">
+                  <h3 class="perk-title">Pitch & Plate Under One Roof</h3>
+                  <p>Play your match on the turf, then step right over to the café for hot food, cold drinks, and post-game banter.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cta-banner-mini">
+              <div>
+                <strong>Want to organize a corporate tournament or birthday match?</strong>
+                <p>Custom group packages available with turf + dining included.</p>
+              </div>
+              <a href="tel:+923350666786" class="btn btn-primary">Call 0335 0666786</a>
+            </div>
+          </div>
+
+          <div class="atmosphere-visual-col">
+            <div class="stacked-images">
+              <div class="stacked-img-card main-stack">
+                <img src="assets/images/entrance-archway.webp" alt="PitchnPlate Illuminated Entrance Walkway" loading="lazy" decoding="async" width="900" height="600">
+                <div class="img-caption">Luminous Canopy Entrance</div>
+              </div>
+              <div class="stacked-img-card accent-stack">
+                <img src="assets/images/pitch-daytime.webp" alt="PitchnPlate Pitch with Stumps in Daylight" loading="lazy" decoding="async" width="900" height="600">
+                <div class="img-caption">Precision Turf Markings</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 6. REAL FACILITY GALLERY                                     -->
+    <!-- ============================================================ -->
+    <section id="gallery" class="section gallery-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">VERIFIED FACILITY GALLERY</span>
+          <h2 class="section-title">See PitchnPlate in Action</h2>
+          <p class="section-desc">
+            Authentic photographs captured right at our Gulzar-e-Hijri, Scheme 33 facility. Click on any photo to inspect in full resolution.
+          </p>
+
+          <!-- Filter Tabs -->
+          <div class="gallery-filter-tabs">
+            <button class="filter-btn active" data-filter="all">All Photos</button>
+            <button class="filter-btn" data-filter="cricket">Cricket & Turf</button>
+            <button class="filter-btn" data-filter="cafe">Café & Screening</button>
+            <button class="filter-btn" data-filter="lounge">Lounge & Entrance</button>
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- Item 1: Night Cricket Match -->
+          <div class="gallery-item" data-category="cricket" data-src="assets/images/cricket-arena-night.webp" data-caption="High-tension box cricket arena in full swing at night under stadium floodlights.">
+            <div class="gallery-thumb-wrapper">
+              <img src="assets/images/cricket-arena-night.webp" alt="Night Cricket Match at PitchnPlate" loading="lazy" decoding="async" width="600" height="450">
+              <div class="gallery-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="caption">Night Cricket Match</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: Outdoor Café & Screen -->
+          <div class="gallery-item" data-category="cafe" data-src="assets/images/cafe-dining-screen.webp" data-caption="Spacious outdoor dining yard with giant projector screen, food kiosk, and Ludo tables.">
+            <div class="gallery-thumb-wrapper">
+              <img src="assets/images/cafe-dining-screen.webp" alt="Outdoor Café and Big Screen at PitchnPlate" loading="lazy" decoding="async" width="600" height="450">
+              <div class="gallery-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="caption">Outdoor Café & Screen</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: Cricket Bat on Turf -->
+          <div class="gallery-item" data-category="cricket" data-src="assets/images/cricket-bat-turf.webp" data-caption="RSC Genius cricket bat and ball on professional astroturf.">
+            <div class="gallery-thumb-wrapper">
+              <img src="assets/images/cricket-bat-turf.webp" alt="RSC Cricket Bat and Turf" loading="lazy" decoding="async" width="600" height="450">
+              <div class="gallery-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="caption">Match Turf & Bat</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4: Family VIP Lounge -->
+          <div class="gallery-item" data-category="lounge" data-src="assets/images/family-vip-lounge.webp" data-caption="Comfortable velvet sofas and fairy lights in the dedicated VIP family seating area.">
+            <div class="gallery-thumb-wrapper">
+              <img src="assets/images/family-vip-lounge.webp" alt="Family VIP Lounge" loading="lazy" decoding="async" width="600" height="450">
+              <div class="gallery-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="caption">Family VIP Lounge</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5: Sports Squad Team Photo -->
+          <div class="gallery-item" data-category="cricket" data-src="assets/images/sports-squad.webp" data-caption="Group of sports lovers celebrating after their match on the PitchnPlate turf.">
+            <div class="gallery-thumb-wrapper">
+              <img src="assets/images/sports-squad.webp" alt="Sports Squad Team Photo" loading="lazy" decoding="async" width="600" height="450">
+              <div class="gallery-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="caption">Happy Squads</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 6: Golden Entrance Archway -->
+          <div class="gallery-item" data-category="lounge" data-src="assets/images/entrance-archway.webp" data-caption="Warm illuminated canopy walkway leading into the arena and café.">
+            <div class="gallery-thumb-wrapper">
+              <img src="assets/images/entrance-archway.webp" alt="Canopy Entrance Walkway" loading="lazy" decoding="async" width="600" height="450">
+              <div class="gallery-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="caption">Entrance Walkway</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 7: Daytime Pitch & Stumps -->
+          <div class="gallery-item" data-category="cricket" data-src="assets/images/pitch-daytime.webp" data-caption="Daytime view of the wickets, lush green turf, and perimeter boundary graphics.">
+            <div class="gallery-thumb-wrapper">
+              <img src="assets/images/pitch-daytime.webp" alt="Pitch Daytime View with Stumps" loading="lazy" decoding="async" width="600" height="450">
+              <div class="gallery-overlay">
+                <span class="zoom-icon">🔍</span>
+                <span class="caption">Cricket Pitch & Stumps</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 7. AUTHENTIC GOOGLE REVIEWS SECTION                         -->
+    <!-- ============================================================ -->
+    <section id="reviews" class="section reviews-section">
+      <div class="container">
+        <div class="reviews-summary-card">
+          <div class="rating-badge-lg">
+            <span class="rating-number">4.2</span>
+            <div class="rating-stars">★★★★★</div>
+            <span class="reviews-count">Based on 47 Google Reviews</span>
+          </div>
+          <div class="rating-text-block">
+            <h3 class="section-title-sub">Karachi's High-Rated Indoor Sports Ground</h3>
+            <p>
+              Visitors love the quality of our turf, the clarity of our floodlighting, and the chill café atmosphere. Check out what actual players have to say:
+            </p>
+          </div>
+          <a href="https://maps.google.com/?q=PitchnPlate+Gulzar+E+Hijri+Scheme+33+Karachi" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            View on Google Maps ↗
+          </a>
+        </div>
+
+        <!-- Reviews Marquee Ribbon ("Patti") with Glowing Cards -->
+        <div class="reviews-marquee-wrapper" aria-label="Customer Reviews Ticker">
+          <div class="reviews-marquee-track">
+            <!-- Set A (Primary Reviews) -->
+            <!-- Review 1: Muhammad Zulqarnain -->
+            <article class="review-card">
+              <div class="review-header">
+                <div class="reviewer-avatar">MZ</div>
+                <div class="reviewer-info">
+                  <h3 class="reviewer-name">Muhammad Zulqarnain</h3>
+                  <div class="review-meta">
+                    <span class="review-stars">★★★★★</span>
+                    <span class="review-date">7 months ago</span>
+                  </div>
+                </div>
+              </div>
+              <p class="review-content">
+                "Great spot in Scheme 33! Awesome indoor cricket & football turf, spacious and well-maintained. Food is tasty, cafe vibe is chill and family-friendly. Perfect for fun games + meals with friends. Highly recommend – will visit again! 5/5 ⭐"
+              </p>
+              <div class="review-tags">
+                <span>Indoor Cricket</span>
+                <span>Football Turf</span>
+                <span>Tasty Food</span>
+              </div>
+            </article>
+
+            <!-- Review 2: Ahmer's Atlas -->
+            <article class="review-card">
+              <div class="review-header">
+                <div class="reviewer-avatar">AA</div>
+                <div class="reviewer-info">
+                  <h3 class="reviewer-name">Ahmer's Atlas</h3>
+                  <div class="review-meta">
+                    <span class="badge-guide">Local Guide • 84 reviews</span>
+                    <span class="review-stars">★★★★★</span>
+                  </div>
+                </div>
+              </div>
+              <p class="review-content">
+                "Pitch n Plate is an amazing new addition to Karachi's indoor sports scene! The facility is top-notch, with high-quality cricket nets and futsal areas—perfect for enthusiasts looking for a professional setup. The cricket nets, in particular, provide great bounce."
+              </p>
+              <div class="review-tags">
+                <span>Quality Nets</span>
+                <span>Pro Setup</span>
+                <span>Futsal</span>
+              </div>
+            </article>
+
+            <!-- Review 3: Muhammad Asim -->
+            <article class="review-card">
+              <div class="review-header">
+                <div class="reviewer-avatar">MA</div>
+                <div class="reviewer-info">
+                  <h3 class="reviewer-name">Muhammad Asim</h3>
+                  <div class="review-meta">
+                    <span class="badge-guide">Local Guide • 11 reviews</span>
+                    <span class="review-stars">★★★★★</span>
+                  </div>
+                </div>
+              </div>
+              <p class="review-content">
+                "Great indoor spot with excellent lighting and plenty of space. The restaurant adds to the charm. Perfect for enjoying with or without family. Excellent night sessions."
+              </p>
+              <div class="review-tags">
+                <span>Excellent Lighting</span>
+                <span>Family Friendly</span>
+                <span>Spacious</span>
+              </div>
+            </article>
+
+            <!-- Review 4: Daniyal Khan -->
+            <article class="review-card">
+              <div class="review-header">
+                <div class="reviewer-avatar">DK</div>
+                <div class="reviewer-info">
+                  <h3 class="reviewer-name">Daniyal Khan</h3>
+                  <div class="review-meta">
+                    <span class="badge-guide">Local Guide • 26 reviews</span>
+                    <span class="review-stars">★★★★★</span>
+                  </div>
+                </div>
+              </div>
+              <p class="review-content">
+                "Best box cricket facility in Gulzar-e-Hijri Scheme 33! High-tension safety nets, authentic green turf, and the floodlighting is super bright without any glare. The café chai & refreshments after the match are fantastic."
+              </p>
+              <div class="review-tags">
+                <span>High-Tension Nets</span>
+                <span>Bright Floodlights</span>
+                <span>Café Refreshments</span>
+              </div>
+            </article>
+
+            <!-- Set B: Duplicate Track for Seamless 360-Degree Continuous Infinite Scroll -->
+            <article class="review-card" aria-hidden="true">
+              <div class="review-header">
+                <div class="reviewer-avatar">MZ</div>
+                <div class="reviewer-info">
+                  <span class="reviewer-name">Muhammad Zulqarnain</span>
+                  <div class="review-meta">
+                    <span class="review-stars">★★★★★</span>
+                    <span class="review-date">7 months ago</span>
+                  </div>
+                </div>
+              </div>
+              <p class="review-content">
+                "Great spot in Scheme 33! Awesome indoor cricket & football turf, spacious and well-maintained. Food is tasty, cafe vibe is chill and family-friendly. Perfect for fun games + meals with friends. Highly recommend – will visit again! 5/5 ⭐"
+              </p>
+              <div class="review-tags">
+                <span>Indoor Cricket</span>
+                <span>Football Turf</span>
+                <span>Tasty Food</span>
+              </div>
+            </article>
+
+            <article class="review-card" aria-hidden="true">
+              <div class="review-header">
+                <div class="reviewer-avatar">AA</div>
+                <div class="reviewer-info">
+                  <span class="reviewer-name">Ahmer's Atlas</span>
+                  <div class="review-meta">
+                    <span class="badge-guide">Local Guide • 84 reviews</span>
+                    <span class="review-stars">★★★★★</span>
+                  </div>
+                </div>
+              </div>
+              <p class="review-content">
+                "Pitch n Plate is an amazing new addition to Karachi's indoor sports scene! The facility is top-notch, with high-quality cricket nets and futsal areas—perfect for enthusiasts looking for a professional setup. The cricket nets, in particular, provide great bounce."
+              </p>
+              <div class="review-tags">
+                <span>Quality Nets</span>
+                <span>Pro Setup</span>
+                <span>Futsal</span>
+              </div>
+            </article>
+
+            <article class="review-card" aria-hidden="true">
+              <div class="review-header">
+                <div class="reviewer-avatar">MA</div>
+                <div class="reviewer-info">
+                  <span class="reviewer-name">Muhammad Asim</span>
+                  <div class="review-meta">
+                    <span class="badge-guide">Local Guide • 11 reviews</span>
+                    <span class="review-stars">★★★★★</span>
+                  </div>
+                </div>
+              </div>
+              <p class="review-content">
+                "Great indoor spot with excellent lighting and plenty of space. The restaurant adds to the charm. Perfect for enjoying with or without family. Excellent night sessions."
+              </p>
+              <div class="review-tags">
+                <span>Excellent Lighting</span>
+                <span>Family Friendly</span>
+                <span>Spacious</span>
+              </div>
+            </article>
+
+            <article class="review-card" aria-hidden="true">
+              <div class="review-header">
+                <div class="reviewer-avatar">DK</div>
+                <div class="reviewer-info">
+                  <span class="reviewer-name">Daniyal Khan</span>
+                  <div class="review-meta">
+                    <span class="badge-guide">Local Guide • 26 reviews</span>
+                    <span class="review-stars">★★★★★</span>
+                  </div>
+                </div>
+              </div>
+              <p class="review-content">
+                "Best box cricket facility in Gulzar-e-Hijri Scheme 33! High-tension safety nets, authentic green turf, and the floodlighting is super bright without any glare. The café chai & refreshments after the match are fantastic."
+              </p>
+              <div class="review-tags">
+                <span>High-Tension Nets</span>
+                <span>Bright Floodlights</span>
+                <span>Café Refreshments</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 8. LOCATION, HOURS & CONTACT                                -->
+    <!-- ============================================================ -->
+    <section id="location" class="section location-section">
+      <div class="container">
+        <div class="location-grid">
+          <!-- Info Column -->
+          <div class="location-info-card">
+            <span class="section-tag">FIND US IN KARACHI</span>
+            <h2 class="section-title">Location & Bookings</h2>
+            <p class="location-desc">
+              Situated in the heart of Gulzar-e-Hijri, Scheme 33. Easily accessible from University Road, Super Highway, and Gulshan-e-Iqbal.
+            </p>
+
+            <div class="info-items">
+              <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-text">
+                  <strong>Address</strong>
+                  <p>X4HG+GQ6, Gulistan Housing Society, Sector 19 B, Gulzar E Hijri, Scheme 33, Karachi, Pakistan</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">📞</div>
+                <div class="info-text">
+                  <strong>Phone / WhatsApp</strong>
+                  <p><a href="tel:+923350666786" class="contact-link">+92 335 0666786</a></p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">🕒</div>
+                <div class="info-text">
+                  <strong>Operating Hours</strong>
+                  <p>Open Daily for Evening & Late Night Sessions (4:00 PM – 4:00 AM)</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-cta-buttons">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=X4HG%2BGQ6,+Gulistan+Housing+Society+Sector+19+B+Gulzar+E+Hijri+Scheme+33,+Karachi,+Pakistan" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <span>Get Directions (Google Maps)</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                </svg>
+              </a>
+
+              <a href="https://wa.me/923350666786?text=Hi%20PitchnPlate,%20I%20would%20like%20to%20inquire%20about%20booking%20a%20turf%20slot." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                <span>Chat on WhatsApp</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-1.117-.058-.27-.087-.615-.224-1.047-.412-1.848-.804-3.056-2.695-3.148-2.818-.093-.123-.746-.992-.746-1.892 0-.901.472-1.344.64-1.528.168-.184.368-.231.492-.231.123 0 .247.002.355.007.114.005.267-.043.418.32.155.373.53 1.294.577 1.389.047.094.078.204.015.328-.063.123-.094.2-.188.311-.094.111-.197.248-.282.333-.094.094-.192.196-.083.383.109.187.485.8 1.044 1.298.718.639 1.325.837 1.512.931.188.094.297.078.406-.047.109-.125.469-.547.594-.734.125-.188.25-.156.422-.094.172.062 1.094.516 1.282.609.188.094.313.141.359.219.047.078.047.453-.097.858z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Visual Map / Landmark Card -->
+          <div class="location-map-card">
+            <div class="map-inner">
+              <div class="map-pin-pulse">
+                <div class="pulse-ring"></div>
+                <div class="pin-marker">🏏</div>
+              </div>
+              <div class="map-label-box">
+                <h3 class="map-title">PitchnPlate Arena</h3>
+                <p>Scheme 33, Karachi</p>
+                <span class="badge-status">● Open Today</span>
+              </div>
+              <img src="assets/images/cricket-arena-night-mobile.webp" alt="PitchnPlate Scheme 33 Venue" class="map-backdrop" loading="lazy" decoding="async" width="768" height="432">
+            </div>
+            <div class="map-footer-note">
+              <span>📍 Landmark: Gulistan Housing Society, Sector 19 B, Gulzar E Hijri</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 9. FINAL CTA SECTION                                         -->
+    <!-- ============================================================ -->
+    <section class="final-cta-section">
+      <div class="container text-center">
+        <h2 class="cta-heading">Ready To Hit The Turf?</h2>
+        <p class="cta-sub">
+          Gather your friends, bring your team, and make your next match unforgettable at PitchnPlate.
+        </p>
+        <div class="cta-action-row">
+          <button class="btn btn-primary btn-large open-booking-trigger">
+            <span>Book Your Slot Now</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+          <a href="tel:+923350666786" class="btn btn-secondary btn-large">
+            <span>Call PitchnPlate (+92 335 0666786)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- 10. SITE FOOTER                                              -->
+  <!-- ============================================================ -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <img src="assets/images/logo.webp" alt="PitchnPlate Logo" class="footer-logo-img" width="50" height="50">
+          <div class="logo-text">
+            <span class="logo-main">PitchnPlate</span>
+            <span class="logo-sub">WHERE SPORTS & FOOD UNITE</span>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          Karachi's ultimate destination for indoor cricket, futsal turf, and sports café recreation.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <h3 class="footer-title">Navigation</h3>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#facilities">Facilities</a></li>
+          <li><a href="#atmosphere">Experience</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#location">Location</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h3 class="footer-title">Quick Contact</h3>
+        <ul>
+          <li><a href="tel:+923350666786">📞 +92 335 0666786</a></li>
+          <li><a href="https://wa.me/923350666786">💬 WhatsApp Direct</a></li>
+          <li><span>📍 Scheme 33, Karachi, PK</span></li>
+          <li><span>🕒 4:00 PM – 4:00 AM</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container bottom-row">
+        <p>© <span id="current-year">2026</span> PitchnPlate. All rights reserved.</p>
+        <div class="footer-badges">
+          <button id="footer-replay-intro" class="footer-replay-link">
+            ↺ Replay Cricket Animation
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- 11. INTERACTIVE BOOKING / INQUIRY MODAL                      -->
+  <!-- ============================================================ -->
+  <div id="booking-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="badge-tag">INSTANT RESERVATION</span>
+          <h3 id="modal-title">Book Your Turf Slot</h3>
+        </div>
+        <button id="close-modal-btn" class="modal-close-btn" aria-label="Close booking modal">✕</button>
+      </div>
+
+      <form id="booking-form" class="modal-body">
+        <div class="form-group">
+          <label for="booking-name">Your Full Name</label>
+          <input type="text" id="booking-name" placeholder="e.g. Ali Khan" required>
+        </div>
+
+        <div class="form-group">
+          <label for="booking-phone">WhatsApp / Phone Number</label>
+          <input type="tel" id="booking-phone" placeholder="e.g. 0300 1234567" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="booking-sport">Activity / Sport</label>
+            <select id="booking-sport">
+              <option value="Indoor Cricket" selected>🏏 Indoor Cricket Nets</option>
+              <option value="Indoor Futsal">⚽ Indoor Futsal / Football</option>
+              <option value="Café Gathering">☕ Café & Match Screening</option>
+              <option value="Family VIP Lounge">👨‍👩‍👧 Family VIP Lounge</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="booking-date">Preferred Date</label>
+            <input type="date" id="booking-date" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="booking-slot">Preferred Time Slot</label>
+          <select id="booking-slot">
+            <option value="Evening (5:00 PM – 8:00 PM)">Evening (5:00 PM – 8:00 PM)</option>
+            <option value="Prime Night (8:00 PM – 11:00 PM)" selected>Prime Night (8:00 PM – 11:00 PM)</option>
+            <option value="Midnight (11:00 PM – 2:00 AM)">Midnight (11:00 PM – 2:00 AM)</option>
+            <option value="Late Night (2:00 AM – 4:00 AM)">Late Night (2:00 AM – 4:00 AM)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="booking-notes">Special Requests / Group Size (Optional)</label>
+          <textarea id="booking-notes" rows="2" placeholder="e.g. 10 players, need cricket bats and tape-ball"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary full-width submit-booking-btn">
+          <span>Send Booking Request via WhatsApp</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-1.117-.058-.27-.087-.615-.224-1.047-.412-1.848-.804-3.056-2.695-3.148-2.818-.093-.123-.746-.992-.746-1.892 0-.901.472-1.344.64-1.528.168-.184.368-.231.492-.231.123 0 .247.002.355.007.114.005.267-.043.418.32.155.373.53 1.294.577 1.389.047.094.078.204.015.328-.063.123-.094.2-.188.311-.094.111-.197.248-.282.333-.094.094-.192.196-.083.383.109.187.485.8 1.044 1.298.718.639 1.325.837 1.512.931.188.094.297.078.406-.047.109-.125.469-.547.594-.734.125-.188.25-.156.422-.094.172.062 1.094.516 1.282.609.188.094.313.141.359.219.047.078.047.453-.097.858z"></path>
+          </svg>
+        </button>
+        <p class="modal-notice">Or call directly at <a href="tel:+923350666786">+92 335 0666786</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 12. FULLSCREEN GALLERY LIGHTBOX                             -->
+  <!-- ============================================================ -->
+  <div id="lightbox-modal" class="lightbox-backdrop" aria-hidden="true" role="dialog">
+    <div class="lightbox-content">
+      <button id="lightbox-close-btn" class="lightbox-close" aria-label="Close lightbox">✕</button>
+      <div class="lightbox-img-container">
+        <img id="lightbox-img" src="" alt="PitchnPlate Venue Photo" width="900" height="600" loading="lazy">
+      </div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SCRIPTS (DEFERRED & MINIFIED)                                -->
+  <!-- ============================================================ -->
+  <script src="js/intro.min.js" defer></script>
+  <script src="js/main.min.js" defer></script>
+</body>
+</html>
